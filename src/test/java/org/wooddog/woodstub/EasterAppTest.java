@@ -23,6 +23,7 @@ public class EasterAppTest implements StubFactory, Stub {
 
     @Before
     public void setup() {
+        System.out.println("SETUP");
         easterApp = new EasterApp();
         WoodStub.setStubFactory(this);
     }
@@ -84,6 +85,7 @@ public class EasterAppTest implements StubFactory, Stub {
      * @return A stub if the method should be stubbed otherwise null.
      */
     public Stub createStub(Object source, String className, String methodName, String methodDescriptor) {
+        System.out.println("STUBBB");
         if ("(Ljava/util/Date;)Z".equals(methodDescriptor)) {
             return this;
         }
