@@ -1,6 +1,5 @@
 package org.wooddog.woodstub;
 
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -24,19 +23,23 @@ public class EasterAppTest implements StubFactory, Stub {
     @Before
     public void setup() {
         System.out.println("SETUP");
-        easterApp = new EasterApp();
-        WoodStub.setStubFactory(this);
     }
 
 
     @Test
     public void testIs12MAJ2010Easter_No() {
+        easterApp = new EasterApp();
+        WoodStub.setStubFactory(this);
+
         this.result = false;
         assertFalse(easterApp.isEaster());
     }
 
     @Test
     public void testIs12MAJ2011Easter_Yes() {
+        easterApp = new EasterApp();
+        WoodStub.setStubFactory(this);
+
         this.result = true;
         assertTrue(easterApp.isEaster());
     }
@@ -140,3 +143,4 @@ public class EasterAppTest implements StubFactory, Stub {
         return result;
     }
 }
+
