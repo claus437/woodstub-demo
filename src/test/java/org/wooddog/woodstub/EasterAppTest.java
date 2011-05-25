@@ -8,6 +8,7 @@ import org.wooddog.woodstub.core.instrumentation.AttributeFactory;
 import org.wooddog.woodstub.core.runtime.Stub;
 import org.wooddog.woodstub.core.runtime.StubFactory;
 import org.wooddog.woodstub.demo.EasterApp;
+import sun.awt.Symbol;
 
 import java.text.AttributedCharacterIterator;
 import java.util.Date;
@@ -28,7 +29,7 @@ public class EasterAppTest implements StubFactory, Stub {
     @BeforeClass
     public static void setup() {
         Logger.getLogger(AttributeFactory.class.getName()).setLevel(Level.WARNING);
-        System.out.println("SETUP");
+        System.out.println("\n\n\n------SETUP-----------\n\n\n");
     }
 
 
@@ -45,7 +46,7 @@ public class EasterAppTest implements StubFactory, Stub {
     @Test
     public void testIs12MAJ2011Easter_Yes() {
         easterApp = new EasterApp();
-        WoodStub.setStubFactory(this);
+        //WoodStub.setStubFactory(this);
 
         this.result = true;
         assertTrue(easterApp.isEaster());
@@ -56,10 +57,12 @@ public class EasterAppTest implements StubFactory, Stub {
     public void testIs12MAJ2011Easter_Failure() {
         System.out.println("im most fall");
         easterApp = new EasterApp();
-        WoodStub.setStubFactory(this);
+        //WoodStub.setStubFactory(this);
 
+        System.out.println("EAS " + easterApp.isEaster());
         this.result = false;
         assertTrue(easterApp.isEaster());
+
     }
 
     /**
@@ -105,7 +108,7 @@ public class EasterAppTest implements StubFactory, Stub {
      * @return A stub if the method should be stubbed otherwise null.
      */
     public Stub createStub(Object source, String className, String methodName, String methodDescriptor) {
-        System.out.println(source + " " + className + " " + methodName + " " + methodDescriptor);
+        System.out.println("CREATING STUB: " + source + " " + className + " " + methodName + " " + methodDescriptor);
         if (source == easterApp && "isEaster".equals(methodName) && "(Ljava/util/Date;)Z".equals(methodDescriptor)) {
             return this;
         }
