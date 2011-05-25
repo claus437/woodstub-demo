@@ -4,11 +4,16 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.wooddog.woodstub.core.WoodStub;
+import org.wooddog.woodstub.core.instrumentation.AttributeFactory;
 import org.wooddog.woodstub.core.runtime.Stub;
 import org.wooddog.woodstub.core.runtime.StubFactory;
 import org.wooddog.woodstub.demo.EasterApp;
 
+import java.text.AttributedCharacterIterator;
 import java.util.Date;
+import java.util.logging.ConsoleHandler;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import static org.junit.Assert.*;
 
@@ -20,14 +25,16 @@ public class EasterAppTest implements StubFactory, Stub {
     private EasterApp easterApp;
 
 
-    @Before
-    public void setup() {
+    @BeforeClass
+    public static void setup() {
+        Logger.getLogger(AttributeFactory.class.getName()).setLevel(Level.WARNING);
         System.out.println("SETUP");
     }
 
 
     @Test
     public void testIs12MAJ2010Easter_No() {
+        System.out.println("testIs12MAJ2010Easter_No");
         easterApp = new EasterApp();
         WoodStub.setStubFactory(this);
 
@@ -98,8 +105,8 @@ public class EasterAppTest implements StubFactory, Stub {
      * @return A stub if the method should be stubbed otherwise null.
      */
     public Stub createStub(Object source, String className, String methodName, String methodDescriptor) {
-        System.out.println("stubb" + className);
-        if ("(Ljava/util/Date;)Z".equals(methodDescriptor)) {
+        System.out.println(source + " " + className + " " + methodName + " " + methodDescriptor);
+        if (source == easterApp && "isEaster".equals(methodName) && "(Ljava/util/Date;)Z".equals(methodDescriptor)) {
             return this;
         }
 

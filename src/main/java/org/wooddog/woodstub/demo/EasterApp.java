@@ -1,8 +1,5 @@
 package org.wooddog.woodstub.demo;
 
-import org.junit.BeforeClass;
-
-import java.math.BigDecimal;
 import java.util.Date;
 
 /**
@@ -11,10 +8,6 @@ import java.util.Date;
  */
 public class EasterApp {
 
-    @BeforeClass
-    public static void start() {
-        System.out.println("Start");
-    }
     public boolean isEaster() {
         int i = 0;
         System.out.println("just test 1" + i++);
